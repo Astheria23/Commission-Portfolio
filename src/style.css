@@ -23,20 +23,7 @@ body {
 
 /* Grid Background with Scanlines */
 body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        linear-gradient(transparent 50%, rgba(0, 0, 0, 0.5) 50%),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
-        linear-gradient(var(--grid-color) 1px, transparent 1px);
-    background-size: 100% 4px, 40px 40px, 40px 40px;
-    pointer-events: none;
-    animation: scanlines 8s linear infinite;
-    z-index: 1;
+
 }
 
 /* Navigation */
@@ -53,7 +40,13 @@ body::before {
     border: 2px solid var(--neon-cyan);
     background: rgba(0, 8, 19, 0.9);
     text-transform: uppercase;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
+.nav.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
 
 .logo {
     position: relative;
@@ -81,6 +74,21 @@ body::before {
 
 /* Hero Section */
 .hero {
+        content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(transparent 50%, rgba(0, 0, 0, 0.5) 50%),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(var(--grid-color) 1px, transparent 1px);
+    background-size: 100% 4px, 40px 40px, 40px 40px;
+    pointer-events: none;
+    animation: scanlines 8s linear infinite;
+    z-index: 1;
+
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -133,13 +141,17 @@ body::before {
 
 /* About Section */
 .about {
-    min-height: 100vh;
+    
+    min-height: 68vh;
     padding: 6rem 2rem;
     background: linear-gradient(rgba(0, 8, 19, 0.9), rgba(0, 8, 19, 0.9)),
                 repeating-linear-gradient(0deg, transparent, transparent 2px, var(--grid-color) 3px, var(--grid-color) 3px);
+    margin-top: 50px; /* Adjust this value for the desired overlap */
+                
 }
 
 .about-container {
+    
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
@@ -174,6 +186,7 @@ body::before {
 .projects {
     padding: 6rem 2rem;
     background: var(--dark-bg);
+    margin-top: -50px; /* Creates overlap between 'about' and 'projects' */
 }
 
 .projects-container {
@@ -182,18 +195,20 @@ body::before {
 }
 
 .project-category {
-    margin-bottom: 4rem;
+    margin-bottom: 8rem;
     border: 1px solid var(--neon-cyan);
     padding: 2rem;
     background: rgba(0, 255, 255, 0.05);
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.6s ease;
+    z-index: 0;
 }
 
 .project-category.visible {
-    opacity: 1;
+    opacity: 2;
     transform: translateY(0);
+    z-index: 0;
 }
 
 .category-title {
@@ -210,6 +225,7 @@ body::before {
     cursor: pointer;
     transition: all 0.3s ease;
     background: rgba(0, 8, 19, 0.8);
+    z-index: 20;
 }
 
 .project-item:hover {
@@ -230,7 +246,7 @@ body::before {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
-    max-width: 600px;
+    max-width: 400px;
     height: auto;
     background: var(--dark-bg);
     border: 2px solid var(--neon-cyan);
@@ -238,7 +254,7 @@ body::before {
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
-    z-index: 1000;
+    z-index: 10;
 }
 
 .project-preview img {
@@ -254,9 +270,10 @@ body::before {
 }
 
 /* Footer */
+
 .footer {
     padding: 4rem 2rem;
-    background: var(--dark-bg);
+    background: black;
     border-top: 2px solid var(--neon-cyan);
 }
 
@@ -294,6 +311,35 @@ body::before {
     background: var(--neon-cyan);
     color: var(--dark-bg);
 }
+
+/* Running Text Banner */
+.running-banner {
+    background-color: var(--dark-bg);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 1rem 0;
+    border-top: 2px solid var(--neon-cyan);
+    border-bottom: 2px solid var(--neon-cyan);
+    max-width: 80%; /* Make the banner narrower */
+    margin: 0 auto; /* Center the banner */
+    position: relative; /* For controlling position with JavaScript */
+}
+
+.banner-content {
+    display: flex;
+    white-space: nowrap;
+    transform: translateX(0); /* Initial transform position */
+}
+
+.banner-content p {
+    font-size: 1.2rem;
+    color: orange;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-right: 50px; /* Space between repeating text */
+}
+
+
 
 /* Animations */
 @keyframes scanlines {
