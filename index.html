@@ -1,37 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Porfolio</title>
-    <link rel="stylesheet" href="src/style.css">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="./src/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <!-- GSAP CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
+    
 </head>
-
 <body>
+    <div id="particle-container"></div>
+    <div class="cursor"></div>
+
     <nav class="nav">
-        <div class="logo">ANAK BINUS</div>
+        <div class="logo">OCTA TORIQ</div>
         <a href="#" class="link-tree">CONNECT</a>
     </nav>
 
-
     <main>
-
         <section class="hero">
             <h1 class="title">CREATIVE<br>ARCHIVE</h1>
-            <img src="/placeholder.svg?height=300&width=300" alt="Digital portrait" class="portrait">
+            <img src="./asset/albedo.png" alt="Digital portrait" class="portrait">
             <p class="tagline">> INITIALIZING CREATIVE PROTOCOLS_</p>
         </section>
 
         <section class="about" data-section>
             <div class="about-container">
-                <h2 class="about-title">> SYSTEM<br>INFO_</h2>
+                <h2 class="about-title">> ANDROID<br>INFO_</h2>
                 <div class="about-content">
-                    <p>DESIGNER: ANAK BINUS<br>
+                    <p>DESIGNER: OCTA TORIQ<br>
                         STATUS: ACTIVE<br>
                         LOCATION: SECTOR BANDUNG<br>
                         CLEARANCE: CREATIVE ART<br><br>
@@ -50,57 +49,47 @@
 
         <section class="running-banner">
             <div class="banner-content">
-                <p>Welcome to the Digital Archive - Revolutionizing Digital Interfaces - Unlocking Creative Potential -
-                    Join the Journey! &nbsp;&nbsp;&nbsp;&nbsp;</p>
-                <p>Welcome to the Digital Archive - Revolutionizing Digital Interfaces - Unlocking Creative Potential -
-                    Join the Journey! &nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <p>Welcome to the Digital Archive - Revolutionizing Digital Interfaces - Unlocking Creative Potential - Join the Journey! &nbsp;&nbsp;&nbsp;&nbsp;</p>
+                <p>Welcome to the Digital Archive - Revolutionizing Digital Interfaces - Unlocking Creative Potential - Join the Journey! &nbsp;&nbsp;&nbsp;&nbsp;</p>
             </div>
         </section>
-
 
         <section class="projects" data-section>
             <div class="projects-container">
                 <div class="project-category">
-                    <h3 class="category-title">> TYPOGRAHPY</h3>
-                    <div class="project-item">
+                    <h3 class="category-title">> TYPOGRAPHY</h3>
+                    <div class="project-item" data-image="./asset/ijo.jpg">
                         <div class="project-header">
                             <span>[01]</span>
                             <h4>NEXUS INTERFACE</h4>
                             <span>STATUS: DEPLOYED</span>
                         </div>
-                        <div class="project-preview">
-                            <img src="./asset/ijo.jpg" alt="Project preview">
-                        </div>
+                        <div class="project-preview"></div>
                     </div>
                 </div>
 
                 <div class="project-category">
                     <h3 class="category-title">> ILLUSTRATION</h3>
-                    <div class="project-item">
+                    <div class="project-item" data-image="./asset/kuning.jpg">
                         <div class="project-header">
                             <span>[01]</span>
                             <h4>SYNTHETIC DREAMS</h4>
                             <span>STATUS: ACTIVE</span>
                         </div>
-                        <div class="project-preview">
-                            <img src="./asset/kuning.jpg" alt="Project preview">
-                        </div>
+                        <div class="project-preview"></div>
                     </div>
                 </div>
 
                 <div class="project-category">
                     <h3 class="category-title">> GRAPHIC DESIGN</h3>
-                    <div class="project-item">
+                    <div class="project-item" data-image="./asset/biru.jpg">
                         <div class="project-header">
                             <span>[01]</span>
                             <h4>CYBER ENHANCEMENT</h4>
                             <span>STATUS: IN PROGRESS</span>
                         </div>
-                        <div class="project-preview">
-                            <img src="./asset/biru.jpg" alt="Project preview">
-                        </div>
+                        <div class="project-preview"></div>
                     </div>
-                    
                 </div>
             </div>
         </section>
@@ -114,12 +103,23 @@
                     <a href="#" class="footer-link">> TWITTER</a>
                     <a href="#" class="footer-link">> WHATSAPP</a>
                 </div>
-                <p class="copyright">© 2024 PORT.SYS - ALL RIGHTS SECURED</p>
+                <p class="copyright">© 2024 OCTA.SYS - ALL RIGHTS SECURED</p>
             </div>
         </footer>
     </main>
+    <!-- Modal Structure -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-status"></p>
+        <div id="modal-preview" class="modal-preview"></div>
+    </div>
+</div>
 
-    <script src="src/app.js"></script>
+<div id="modal-noise" class="modal-noise"></div>
+
+
+    <script src="./src/app.js"></script>
 </body>
-
 </html>

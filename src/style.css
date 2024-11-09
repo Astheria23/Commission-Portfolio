@@ -10,7 +10,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: default;
+    cursor: none;
 }
 
 body {
@@ -21,13 +21,31 @@ body {
     overflow-x: hidden;
 }
 
-/* Grid Background with Scanlines */
-body::before {
+/* Particle background */
+#particle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
 
+/* Custom cursor */
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--neon-cyan);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.2s ease;
 }
 
 /* Navigation */
 .nav {
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,11 +60,11 @@ body::before {
     text-transform: uppercase;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
+
 .nav.hidden {
     transform: translateY(-100%);
     opacity: 0;
 }
-
 
 .logo {
     position: relative;
@@ -74,8 +92,6 @@ body::before {
 
 /* Hero Section */
 .hero {
-        content: '';
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -141,17 +157,14 @@ body::before {
 
 /* About Section */
 .about {
-    
     min-height: 68vh;
     padding: 6rem 2rem;
     background: linear-gradient(rgba(0, 8, 19, 0.9), rgba(0, 8, 19, 0.9)),
                 repeating-linear-gradient(0deg, transparent, transparent 2px, var(--grid-color) 3px, var(--grid-color) 3px);
-    margin-top: 50px; /* Adjust this value for the desired overlap */
-                
+    margin-top: 50px;
 }
 
 .about-container {
-    
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
@@ -182,11 +195,38 @@ body::before {
     background: rgba(0, 255, 255, 0.05);
 }
 
+/* Running Text Banner */
+.running-banner {
+    background-color: var(--dark-bg);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 1rem 0;
+    border-top: 2px solid var(--neon-cyan);
+    border-bottom: 2px solid var(--neon-cyan);
+    max-width: 80%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.banner-content {
+    display: flex;
+    white-space: nowrap;
+    transform: translateX(0);
+}
+
+.banner-content p {
+    font-size: 1.2rem;
+    color: orange;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-right: 50px;
+}
+
 /* Projects Section */
 .projects {
     padding: 6rem 2rem;
     background: var(--dark-bg);
-    margin-top: -50px; /* Creates overlap between 'about' and 'projects' */
+    margin-top: -50px;
 }
 
 .projects-container {
@@ -206,7 +246,7 @@ body::before {
 }
 
 .project-category.visible {
-    opacity: 2;
+    opacity: 1;
     transform: translateY(0);
     z-index: 0;
 }
@@ -222,10 +262,12 @@ body::before {
     padding: 1.5rem;
     border: 1px solid var(--neon-cyan);
     margin-bottom: 1rem;
-    cursor: pointer;
+    cursor: none;
     transition: all 0.3s ease;
     background: rgba(0, 8, 19, 0.8);
     z-index: 20;
+    position: relative;
+    overflow: visible;
 }
 
 .project-item:hover {
@@ -241,36 +283,24 @@ body::before {
 }
 
 .project-preview {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 400px;
-    height: auto;
-    background: var(--dark-bg);
-    border: 2px solid var(--neon-cyan);
-    padding: 1rem;
+    position: absolute;
+    width: 200px;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
     opacity: 0;
     pointer-events: none;
-    transition: all 0.3s ease;
-    z-index: 10;
-}
-
-.project-preview img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    image-rendering: pixelated;
+    transition: opacity 0.3s ease;
+    border: 2px solid var(--neon-cyan);
+    box-shadow: 0 0 10px var(--neon-cyan);
+    z-index: 30;
 }
 
 .project-item:hover .project-preview {
     opacity: 1;
-    pointer-events: auto;
 }
 
 /* Footer */
-
 .footer {
     padding: 4rem 2rem;
     background: black;
@@ -312,34 +342,101 @@ body::before {
     color: var(--dark-bg);
 }
 
-/* Running Text Banner */
-.running-banner {
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
     background-color: var(--dark-bg);
+    padding: 20px;
+    border: 2px solid var(--neon-cyan);
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    position: relative;
+}
+
+/* Expanded modal image */
+.modal-preview {
+    background-size: cover;
+    background-position: center;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    max-width: 100%; /* Prevent overflow */
+    max-height: 80vh; /* Prevent overflow */
+}
+
+/* Modal glitch styling */
+.modal-content {
+    position: relative;
     overflow: hidden;
-    white-space: nowrap;
-    padding: 1rem 0;
-    border-top: 2px solid var(--neon-cyan);
-    border-bottom: 2px solid var(--neon-cyan);
-    max-width: 80%; /* Make the banner narrower */
-    margin: 0 auto; /* Center the banner */
-    position: relative; /* For controlling position with JavaScript */
+    animation: glitch 0.7s ease-in-out; /* Main glitch animation on open */
 }
 
-.banner-content {
-    display: flex;
-    white-space: nowrap;
-    transform: translateX(0); /* Initial transform position */
+.modal-content::before,
+.modal-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    animation: glitch-before 0.7s infinite ease-in-out;
+    opacity: 0.7;
 }
 
-.banner-content p {
-    font-size: 1.2rem;
-    color: orange;
-    text-transform: uppercase;
-    white-space: nowrap;
-    padding-right: 50px; /* Space between repeating text */
+.modal-content::after {
+    animation: glitch-after 0.7s infinite ease-in-out;
+    background: var(--neon-pink);
+    opacity: 0.5;
 }
 
 
+/* Noise Effect Overlay */
+.modal-noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'); /* Path to your noise image */
+    background-size: cover;
+    background-color: #8c8c8c;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 99;
+    display: none; /* Initially hidden */
+    animation: noise-animation 0.1s steps(8) infinite;
+}
+
+/* Stronger flickering effect */
+@keyframes noise-animation {
+    0% { opacity: 0.5; transform: translate(0, 0); }
+    20% { opacity: 0.2; transform: translate(-10px, 5px); }
+    40% { opacity: 0.3; transform: translate(5px, -10px); }
+    60% { opacity: 0.4; transform: translate(-10px, -10px); }
+    80% { opacity: 0.2; transform: translate(5px, 5px); }
+    100% { opacity: 0.4; transform: translate(0, 0); }
+}
+
+.close {
+    color: var(--neon-pink);
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+}
 
 /* Animations */
 @keyframes scanlines {
@@ -366,6 +463,8 @@ body::before {
     100% { text-shadow: -0.025em 0 0 var(--neon-pink), -0.025em -0.025em 0 var(--neon-cyan); }
 }
 
+
+
 @keyframes borderGlitch {
     0% { clip-path: inset(0 0 0 0); }
     5% { clip-path: inset(10% 0 0 0); }
@@ -374,6 +473,55 @@ body::before {
     20% { clip-path: inset(0 0 0 10%); }
     25% { clip-path: inset(0 0 0 0); }
     100% { clip-path: inset(0 0 0 0); }
+}
+@keyframes glitch-before {
+    0% {
+        clip: rect(0, 9999px, 0, 0);
+    }
+    20% {
+        clip: rect(10px, 9999px, 10px, 0);
+        transform: translate(-5px, -5px);
+    }
+    40% {
+        clip: rect(5px, 9999px, 15px, 0);
+        transform: translate(5px, 5px);
+    }
+    60% {
+        clip: rect(10px, 9999px, 5px, 0);
+        transform: translate(-5px, 5px);
+    }
+    80% {
+        clip: rect(15px, 9999px, 10px, 0);
+        transform: translate(5px, -5px);
+    }
+    100% {
+        clip: rect(0, 9999px, 0, 0);
+    }
+}
+
+@keyframes glitch-after {
+    0% {
+        clip: rect(0, 9999px, 0, 0);
+    }
+    20% {
+        clip: rect(5px, 9999px, 15px, 0);
+        transform: translate(5px, 5px);
+    }
+    40% {
+        clip: rect(10px, 9999px, 5px, 0);
+        transform: translate(-5px, -5px);
+    }
+    60% {
+        clip: rect(5px, 9999px, 10px, 0);
+        transform: translate(5px, -5px);
+    }
+    80% {
+        clip: rect(15px, 9999px, 5px, 0);
+        transform: translate(-5px, 5px);
+    }
+    100% {
+        clip: rect(0, 9999px, 0, 0);
+    }
 }
 
 @keyframes terminalBlink {
@@ -404,5 +552,39 @@ body::before {
     .project-header {
         flex-direction: column;
         align-items: flex-start;
+    }
+    .modal-content {
+        width: 90%;
+        max-width: 90vw; /* Flexible width */
+        padding: 15px;
+    }
+
+    .modal-preview {
+        width: 100%;
+        height: auto; /* Maintain aspect ratio on smaller screens */
+        max-height: 50vh; /* Prevent overflow */
+    }
+
+    .close {
+        font-size: 24px; /* Smaller close button on mobile */
+        top: 5px;
+        right: 10px;
+    }
+    .cursor {
+        display: none;
+    }
+}
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 10px; /* Reduced padding for very small screens */
+    }
+
+    .modal-preview {
+        max-height: 40vh; /* Limit preview height on small screens */
+    }
+
+    .modal-title,
+    .modal-status {
+        font-size: 0.9rem; /* Adjust font size for readability on mobile */
     }
 }
