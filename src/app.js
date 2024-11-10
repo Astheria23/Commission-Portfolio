@@ -64,7 +64,7 @@ function createParticles() {
         particle.style.position = 'absolute';
         particle.style.width = '2px';
         particle.style.height = '2px';
-        particle.style.background = 'var(--neon-cyan)';
+        particle.style.background = Math.random() > 0.5 ? 'var(--neon-orange)' : 'var(--neon-blue)';
         particle.style.left = `${Math.random() * 100}%`;
         particle.style.top = `${Math.random() * 100}%`;
         particle.style.opacity = Math.random();
@@ -129,38 +129,6 @@ const modalTitle = document.getElementById("modal-title");
 const modalStatus = document.getElementById("modal-status");
 const modalPreview = document.getElementById("modal-preview");
 const closeModal = document.querySelector(".close");
-
-// Open modal on project item click
-document.querySelectorAll('.project-item').forEach(item => {
-// Open modal on project item click with original image size
-document.querySelectorAll('.project-item').forEach(item => {
-    item.addEventListener('click', () => {
-        const title = item.querySelector('h4').innerText;
-        const status = item.querySelector('.project-header span:last-child').innerText;
-        const previewImage = item.getAttribute('data-image');
-
-        // Create a temporary image to get the natural dimensions
-        const tempImg = new Image();
-        tempImg.src = previewImage;
-
-        tempImg.onload = () => {
-            // Set modal content
-            modalTitle.innerText = title;
-            modalStatus.innerText = status;
-            modalPreview.style.backgroundImage = `url(${previewImage})`;
-
-            // Apply original dimensions to modal preview
-            modalPreview.style.width = `${tempImg.naturalWidth}px`;
-            modalPreview.style.height = `${tempImg.naturalHeight}px`;
-
-            // Show the modal
-            modal.style.display = "flex";
-        };
-    });
-});
-});
-
-// Elements for modal and noise effect
 const modalNoise = document.getElementById("modal-noise");
 
 // Open modal with noise effect
@@ -211,8 +179,6 @@ window.addEventListener('click', (e) => {
     }
 });
 
-
-
 // Typing effect for tagline
 const tagline = document.querySelector('.tagline');
 const text = tagline.textContent;
@@ -244,3 +210,79 @@ gsap.from('.portrait', {
     delay: 1
 });
 
+// Timer functionality
+const timerElement = document.getElementById('timer');
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+
+function updateTimer() {
+    seconds++;
+    if (seconds === 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes === 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+    timerElement.textContent = 
+        (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + 
+        (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + 
+        (seconds > 9 ? seconds : "0" + seconds);
+}
+
+setInterval(updateTimer, 1000);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('modal');
+    const modalPreview = document.getElementById('modal-preview');
+    const closeModal = document.querySelector('.close');
+    const modalNoise = document.getElementById('modal-noise');
+    const prevButton = document.querySelector('.modal-prev');
+    const nextButton = document.querySelector('.modal-next');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    let currentIndex = 0;
+
+    function openModal(index) {
+        const item = galleryItems[index];
+        const imageUrl = item.getAttribute('data-image');
+        const modalPreview = document.getElementById('modal-preview');
+        modalPreview.src = imageUrl;
+        modalPreview.alt = `Illustration ${index + 1}`;
+        modal.style.display = 'flex';
+        modalNoise.style.display = 'block';
+        currentIndex = index;
+    }
+
+    function closeModalHandler() {
+        modal.style.display = 'none';
+        modalNoise.style.display = 'none';
+    }
+
+    function navigateModal(direction) {
+        currentIndex = (currentIndex + direction + galleryItems.length) % galleryItems.length;
+        openModal(currentIndex);
+    }
+
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => openModal(index));
+    });
+
+    closeModal.addEventListener('click', closeModalHandler);
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) closeModalHandler();
+    });
+
+    prevButton.addEventListener('click', () => navigateModal(-1));
+    nextButton.addEventListener('click', () => navigateModal(1));
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (modal.style.display === 'flex') {
+            if (e.key === 'ArrowLeft') navigateModal(-1);
+            if (e.key === 'ArrowRight') navigateModal(1);
+            if (e.key === 'Escape') closeModalHandler();
+        }
+    });
+});

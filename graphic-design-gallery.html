@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Illustration Gallery - Portfolio</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
+</head>
+<body>
+    <div id="particle-container"></div>
+    <div class="cursor"></div>
+
+    <nav class="nav">
+        <div class="logo">CR. RONALDO</div>
+        <a href="index.html" class="link-tree">< BACK TO HOME</a>
+    </nav>
+
+    <main>
+        <section class="gallery-hero">
+            <h1 class="title">GRAPHIC DESIGN<br>GALLERY</h1>
+            <p class="tagline">> CRAFTING VISUAL IDENTITIES__</p>
+        </section>
+
+        <section class="gallery" data-section>
+            <div class="gallery-container">
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-image="./asset/graphic-design/ada.webp">
+                        <img src="./asset/graphic-design/ada.webp" alt="Graphic1">
+                    </div>
+                    <div class="gallery-item" data-image="./asset/graphic-design/akiraposter.webp">
+                        <img src="./asset/graphic-design/akiraposter.webp" alt="Graphic2">
+                    </div>
+                    <div class="gallery-item" data-image="./asset/graphic-design/arthur.webp">
+                        <img src="./asset/graphic-design/arthur.webp" alt="Graphic3">
+                    </div>
+                    <div class="gallery-item" data-image="./asset/graphic-design/bayonetta.webp">
+                        <img src="./asset/graphic-design/bayonetta.webp" alt="Graphic4">
+                    </div>
+                    <div class="gallery-item" data-image="./asset/graphic-design/cloud.webp">
+                        <img src="./asset/graphic-design/cloud.webp" alt="Graphic5">
+                    </div>
+                    <div class="gallery-item" data-image="./asset/graphic-design/dante.webp">
+                        <img src="./asset/graphic-design/dante.webp" alt="Graphic6">
+                    </div>
+                    <div class="gallery-item" data-image="./asset/graphic-design/eldenring.webp">
+                        <img src="./asset/graphic-design/eldenring.webp" alt="Graphic7">
+                    </div>
+                    <div class="gallery-item" data-image="./asset/graphic-design/eva01.webp">
+                        <img src="./asset/graphic-design/eva01.webp" alt="Graphic8">
+                    </div>
+                    <div class="gallery-item" data-image="./asset/graphic-design/giselle.webp">
+                        <img src="./asset/graphic-design/giselle.webp" alt="Graphic9">
+                    </div>
+                    <div class="gallery-item" data-image="./asset/graphic-design/hanni.webp">
+                        <img src="./asset/graphic-design/hanni.webp" alt="Graphic10">
+                    </div>
+                    <div class="gallery-item" data-image="./asset/graphic-design/jinx.webp">
+                        <img src="./asset/graphic-design/jinx.webp" alt="Graphic11">
+                    </div>
+                    <div class="gallery-item" data-image="./asset/graphic-design/leon.webp">
+                        <img src="./asset/graphic-design/leon.webp" alt="Graphic12">
+                    </div>
+                    <div class="gallery-item" data-image="./asset/graphic-design/malenia.webp">
+                        <img src="./asset/graphic-design/malenia.webp" alt="Graphic13">
+                    </div>
+                    <div class="gallery-item" data-image="./asset/graphic-design/meggs.webp">
+                        <img src="./asset/graphic-design/meggs.webp" alt="Graphic14">
+                    </div>
+                    <div class="gallery-item" data-image="./asset/graphic-design/noctis.webp">
+                        <img src="./asset/graphic-design/noctis.webp" alt="Graphic15">
+                    </div>
+                    <div class="gallery-item" data-image="./asset/graphic-design/pyramidhead.webp">
+                        <img src="./asset/graphic-design/pyramidhead.webp" alt="Graphic16">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-logo">CONNECT WITH ME</div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">> INSTAGRAM</a>
+                    <a href="#" class="footer-link">> LINKEDIN</a>
+                    <a href="#" class="footer-link">> TWITTER</a>
+                    <a href="#" class="footer-link">> WHATSAPP</a>
+                </div>
+                <p class="copyright">© 2024 OCTA.SYS - ALL RIGHTS SECURED</p>
+                <div id="timer" class="timer">00:00:00</div>
+            </div>
+        </footer>
+    </main>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-status"></p>
+            <img id="modal-preview" class="modal-preview" src="" alt="Modal preview">
+        </div>
+        <div class="modal-nav modal-prev">&lt;</div>
+        <div class="modal-nav modal-next">&gt;</div>
+    </div>
+
+    <div id="modal-noise" class="modal-noise"></div>
+
+    <script src="./src/app.js"></script>
+</body>
+</html>
