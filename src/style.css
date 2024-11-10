@@ -22,6 +22,7 @@ body {
     overflow-x: hidden;
 }
 
+
 #particle-container {
     position: fixed;
     top: 0;
@@ -92,33 +93,6 @@ body {
     text-shadow: 0 0 10px var(--neon-red);
 }
 
-.speedometer {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 2px solid var(--neon-blue);
-    position: relative;
-    overflow: hidden;
-}
-
-.speedometer-dial {
-    width: 100%;
-    height: 100%;
-    background: conic-gradient(from 0deg, var(--neon-orange) 0%, var(--neon-blue) 100%);
-    opacity: 0.5;
-}
-
-.speedometer-needle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 2px;
-    height: 20px;
-    background-color: var(--neon-red);
-    transform-origin: bottom center;
-    transform: translateX(-50%) rotate(0deg);
-    transition: transform 0.5s ease;
-}
 
 .hero {
     height: 100vh;
@@ -183,46 +157,6 @@ body {
     max-width: 600px;
     text-align: center;
     border-radius: 10px;
-}
-
-.robot-arm {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 100px;
-    height: 150px;
-}
-
-.arm-base {
-    width: 40px;
-    height: 40px;
-    background-color: var(--neon-orange);
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 5px;
-}
-
-.arm-segment {
-    width: 10px;
-    height: 80px;
-    background-color: var(--neon-blue);
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.arm-end {
-    width: 30px;
-    height: 30px;
-    background-color: var(--neon-orange);
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 50%;
 }
 
 .about {
@@ -324,10 +258,11 @@ body {
 }
 
 .category-title {
-    color: var(--neon-red);
+    color: var(--neon-blue);
     font-size: 1.2rem;
     margin-bottom: 2rem;
-    text-shadow: 0 0 5px var(--neon-red);
+    text-shadow: 0 0 5px var(--neon-blue);
+    animation: terminalBlink 2s infinite;
 }
 
 .project-item {
