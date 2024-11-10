@@ -47,6 +47,9 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
+    margin-top: 1rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
     position: fixed;
     top: 0;
     left: 0;
@@ -57,6 +60,7 @@ body {
     text-transform: uppercase;
     transition: transform 0.3s ease, opacity 0.3s ease;
     border-radius: 10px;
+    
 }
 
 .nav.hidden {
@@ -135,8 +139,10 @@ body {
 
 .title {
     font-size: clamp(2rem, 8vw, 6rem);
+    font-family: AstheticPixelDemoRegular, 'Press Start 2P', monospace;
     text-align: center;
     line-height: 1.2;
+    margin-top: 2rem;
     margin-bottom: 2rem;
     animation: textGlitch 5s infinite;
     background: linear-gradient(45deg, var(--neon-orange), var(--neon-blue));
@@ -244,7 +250,8 @@ body {
 }
 
 .about-title {
-    font-size: 2.5rem;
+    font-family: AstheticPixelDemoRegular, 'Press Start 2P', monospace;
+    font-size: 4rem;
     color: var(--neon-blue);
     text-shadow: 0 0 10px var(--neon-blue);
     animation: terminalBlink 2s infinite;
@@ -430,6 +437,12 @@ body {
     align-items: center;
     justify-content: center;
 }
+.copyright{
+    text-align: center;
+    font-size: 1rem;
+    padding: 1rem;
+    margin-top: 2rem;
+}
 
 .modal-content {
     background-color: var(--dark-bg);
@@ -448,7 +461,7 @@ body {
     margin-top: 40px;
     transition: all 0.3s ease;
     max-width: 100%;
-    max-height: 73vh;
+    max-height: 50vh;
     
 }
 
@@ -657,8 +670,7 @@ body {
     justify-content: center;
     text-align: center;
     padding: 2rem;
-    background: linear-gradient(rgba(26, 5, 0, 0.7), rgba(26, 5, 0, 0.7)),
-                url('path-to-your-hero-image.jpg') center/cover no-repeat;
+    background: linear-gradient(rgba(26, 5, 0, 0.7), rgba(26, 5, 0, 0.7));
 }
 
 .gallery-container {
@@ -735,3 +747,33 @@ body {
     }
 }
 
+.skeleton {
+    background: linear-gradient(90deg, var(--dark-bg) 25%, var(--neon-orange) 50%, var(--dark-bg) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.skeleton-text {
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.modal-preview-gd {
+    background-size: cover;
+    background-position: center;
+    margin-top: 40px;
+    transition: all 0.3s ease;
+    max-width: 100%;
+    max-height: 69vh;
+    
+}
