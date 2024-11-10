@@ -22,7 +22,6 @@ body {
     overflow-x: hidden;
 }
 
-
 #particle-container {
     position: fixed;
     top: 0;
@@ -103,12 +102,6 @@ body {
     position: relative;
     padding: 2rem;
     overflow: hidden;
-    background: 
-        linear-gradient(transparent 50%, rgba(26, 5, 0, 0.5) 50%),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
-        linear-gradient(var(--grid-color) 1px, transparent 1px);
-    background-size: 100% 4px, 40px 40px, 40px 40px;
-    animation: scanlines 8s linear infinite;
 }
 
 .title {
@@ -164,7 +157,7 @@ body {
     padding: 6rem 2rem;
     background: linear-gradient(rgba(26, 5, 0, 0.9), rgba(26, 5, 0, 0.9)),
                 repeating-linear-gradient(0deg, transparent, transparent 2px, var(--grid-color) 3px, var(--grid-color) 3px);
-    margin-top: 50px;
+    margin-top: 5px;
 }
 
 .about-container {
@@ -231,13 +224,15 @@ body {
 .projects {
     padding: 6rem 2rem;
     background: var(--dark-bg);
-    margin-top: -50px;
+    margin-top: -60px;
 }
 
 .projects-container {
     max-width: 1200px;
     margin: 0 auto;
 }
+
+
 
 .project-category {
     margin-bottom: 8rem;
@@ -258,8 +253,9 @@ body {
 }
 
 .category-title {
+    font-family: AstheticPixelDemoRegular, 'Press Start 2P', monospace;
     color: var(--neon-blue);
-    font-size: 1.2rem;
+    font-size: 2rem;
     margin-bottom: 2rem;
     text-shadow: 0 0 5px var(--neon-blue);
     animation: terminalBlink 2s infinite;
@@ -596,7 +592,20 @@ body {
     background-color: transparent;
     color: var(--neon-orange);
 }
-
+.grid-background {
+    background: 
+        linear-gradient(transparent 50%, rgba(26, 5, 0, 0.5) 50%),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(var(--grid-color) 1px, transparent 1px);
+    background-size: 100% 4px, 40px 40px, 40px 40px;
+    animation: scanlines 30s linear infinite;
+}
+.projects.about-background {
+    animation: scanlines 12s linear infinite;
+}
+.projects.grid-background {
+    animation: scanlines 90s linear infinite;
+}
 .gallery-hero {
     height: 50vh;
     display: flex;

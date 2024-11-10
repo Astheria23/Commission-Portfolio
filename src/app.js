@@ -1,4 +1,3 @@
-// Register GSAP's ScrollToPlugin
 gsap.registerPlugin(ScrollToPlugin);
 
 // Smooth scrolling with GSAP
@@ -288,43 +287,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Skeleton loader functionality
-document.addEventListener('DOMContentLoaded', () => {
-    const skeletonElements = document.querySelectorAll('.skeleton, .skeleton-text');
-    const portraitImg = new Image();
-    portraitImg.src = './asset/main-profile/IMG_0485.png';
-
-    portraitImg.onload = () => {
-        setTimeout(() => {
-            skeletonElements.forEach(element => {
-                element.classList.remove('skeleton', 'skeleton-text');
-            });
-
-            const portraitContainer = document.querySelector('.portrait-container');
-            portraitContainer.innerHTML = `<img src="${portraitImg.src}" alt="Digital portrait" class="portrait">`;
-
-            // Trigger animations after content is loaded
-            gsap.from('.title', {
-                duration: 1.5,
-                opacity: 0,
-                y: 50,
-                ease: 'power3.out',
-                delay: 0.5
-            });
-
-            gsap.from('.portrait', {
-                duration: 1.5,
-                opacity: 0,
-                scale: 0.8,
-                ease: 'power3.out',
-                delay: 1
-            });
-
-            // Initialize other animations and functionalities
-            initializeWebsite();
-        }, 1500); // Simulate a minimum loading time of 1.5 seconds
-    };
-});
 
 function initializeWebsite() {
     createParticles();
